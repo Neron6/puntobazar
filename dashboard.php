@@ -32,25 +32,31 @@ $conexion->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Sistema de Clientes</title>
-    <link rel="stylesheet" href="styles.css">  <!-- Asegúrate de tener una hoja de estilos -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="main-header">
+        <h1>Punto Bazar</h1>
+        <h2>Sistema de Gestión</h2>
+    </header>
+
     <div class="container">
-        <header>
-            <h1>Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?>!</h1>
-        </header>
+        <h2>Bienvenido, <?= htmlspecialchars($nombre_usuario); ?>!</h2>
 
-        <section class="dashboard">
-            <div class="card">
-                <h2>Total de Clientes Registrados</h2>
-                <p><?php echo $total_clientes; ?></p>
-            </div>
+        <div class="dashboard-card">
+            <h3>Total de Clientes Registrados</h3>
+            <p class="number"><?= htmlspecialchars($total_clientes); ?></p>
+        </div>
 
-            <div class="buttons">
-                <a href="catalogo_usuarios.php" class="btn">Ver Catálogo de Clientes</a>
-                <a href="logout.php" class="btn">Cerrar Sesión</a>
-            </div>
-        </section>
+        <div class="acciones">
+            <a href="catalogo_clientes.php" class="button">Ver Catálogo de Clientes</a>
+            <a href="logout.php" class="button button-danger">Cerrar Sesión</a>
+        </div>
     </div>
+
+    <footer class="main-footer">
+        <h3>© 2025 Sistema de Gestión. Punto Bazar.</h3>
+    </footer>
 </body>
 </html>
