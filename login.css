@@ -1,0 +1,118 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3f3f5, #e8eaed);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, #0078d4, #003b8b);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.main-header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Login Container */
+.login-container {
+    background: white;
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 1.8rem;
+    color: #0078d4;
+    margin-bottom: 1.5rem;
+}
+
+.login-container label {
+    display: block;
+    text-align: left;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-container .error {
+    color: #ff4c4c;
+    background: #ffe4e4;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+/* Botones */
+.button {
+    background: linear-gradient(135deg, #0078d4, #00a8e8);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #005bb5, #0078d4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 120, 212, 0.4);
+}
+
+.acciones {
+    margin-top: 1rem;
+}
+
+/* Footer */
+.main-footer {
+    background: linear-gradient(135deg, #0078d4, #003b8b); /* Colores del gradiente */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 12px;
+    margin-top: 2rem; /* Espacio superior */
+    font-size: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra superior */
+    width: 100%; /* Asegurar que ocupe todo el ancho */
+}
