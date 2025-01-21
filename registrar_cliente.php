@@ -1,35 +1,22 @@
 <?php
-session_start();
 require 'conexion.php';
 
-// Verificar si el usuario está logueado
-if (!isset($_SESSION['id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-$nombre_usuario = $_SESSION['nombre'];  // Nombre del usuario logueado
-
-// Verificar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $codigo_cliente = $_POST['codigo_cliente'];
+    $codigo_cliente = strtoupper($_POST['codigo_cliente']); // Convertir a mayúsculas
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $domicilio = $_POST['domicilio'];
     $telefono = $_POST['telefono'];
-    $email = $_POST['email'];  // Email es opcional
+    $email = $_POST['email'] ?? null;
 
-    // Consulta para insertar el nuevo cliente en la base de datos
-    $sql = "INSERT INTO clientes (codigo_cliente, nombre, apellido, domicilio, telefono, email) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-
+    $sql = "INSERT INTO clientes (codigo_cliente, nombre, apellido, domicilio, telefono, email) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("ssssss", $codigo_cliente, $nombre, $apellido, $domicilio, $telefono, $email);
 
     if ($stmt->execute()) {
-        echo "<p>Cliente registrado exitosamente.</p>";
+        $mensaje = "Cliente registrado con éxito.";
     } else {
-        echo "<p>Error al registrar el cliente: " . $conexion->error . "</p>";
+        $error = "Error al registrar cliente: " . $stmt->error;
     }
 
     $stmt->close();
@@ -43,37 +30,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Cliente</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/registrar_cliente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Registrar Cliente</h1>
-        </header>
+    <header class="main-header">
+        <h1>Punto Bazar</h1>
+        <h2>Sistema de Gestión</h2>
+    </header>
 
-        <section class="form">
-            <form method="POST" action="login.php">
-                <label for="codigo_cliente">Código:</label>
-                <input type="text" name="codigo_cliente" id="codigo_cliente" required>
+    <div class="registro-container">
+        <h2>Registro de Clientes</h2>
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" required>
+        <?php if (isset($mensaje)): ?>
+            <p class="success"> <?= htmlspecialchars($mensaje) ?> </p>
+        <?php elseif (isset($error)): ?>
+            <p class="error"> <?= htmlspecialchars($error) ?> </p>
+        <?php endif; ?>
 
-                <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" id="apellido" required>
+        <form method="POST" action="" class="registro-form">
+            <label for="codigo_cliente">Código de Cliente:</label>
+            <input type="text" name="codigo_cliente" id="codigo_cliente" placeholder="Código de Cliente" required>
 
-                <label for="domicilio">Domicilio:</label>
-                <input type="text" name="domicilio" id="domicilio" required>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
 
-                <label for="telefono">Teléfono:</label>
-                <input type="text" name="telefono" id="telefono" required>
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
 
-                <label for="email">Email (opcional):</label>
-                <input type="email" name="email" id="email">
+            <label for="domicilio">Domicilio:</label>
+            <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" required>
 
-                <button type="submit" class="btn">Registrar Cliente</button>
-            </form>
-        </section>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+
+            <label for="email">Correo Electrónico (opcional):</label>
+            <input type="email" name="email" id="email" placeholder="Correo Electrónico">
+
+            <button type="submit" class="btn">Registrar Cliente</button>
+        </form>
+
+        <div class="acciones">
+            <a href="catalogo_clientes.php" class="btn">Regresar al Catálogo</a>
+        </div>
     </div>
+
+    <footer class="main-footer">
+        <h3>© 2025 Sistema de Gestión. Punto Bazar.</h3>
+    </footer>
 </body>
 </html>
