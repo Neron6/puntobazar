@@ -1,0 +1,123 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3f3f5, #e8eaed);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, #0078d4, #003b8b);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.main-header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Container */
+.container {
+    background: white;
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container h2 {
+    font-size: 1.8rem;
+    color: #0078d4;
+    margin-bottom: 1.5rem;
+}
+
+/* Dashboard Card */
+.dashboard-card {
+    background: linear-gradient(135deg, #0078d4, #00a8e8);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-card .number {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* Botones */
+.acciones {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.button {
+    background: linear-gradient(135deg, #0078d4, #00a8e8);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #005bb5, #0078d4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 120, 212, 0.4);
+}
+
+.button-danger {
+    background: linear-gradient(135deg, #ff4c4c, #ff0000);
+}
+
+.button-danger:hover {
+    background: linear-gradient(135deg, #d40000, #b30000);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
+}
+
+/* Footer */
+.main-footer {
+    background: linear-gradient(135deg, #0078d4, #003b8b);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 12px;
+    margin-top: auto;
+    font-size: 1rem;
+}
