@@ -3,8 +3,8 @@
 //Se establecen variables de conexión
 
 $host = "localhost"; //servidor de la base de datos
-$usuario = "victor";
-$password = "SqTsb6Qj";
+$usuario = "barba";
+$password = "SqTsn6Qj";
 $base_datos = "puntobazarv";
 
 //Se crea la conexión. Se establece la variable de la conexión
