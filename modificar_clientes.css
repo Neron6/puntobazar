@@ -1,0 +1,152 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3f3f5, #e8eaed);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+}
+
+.main-header {
+    background: linear-gradient(135deg, #0078d4, #003b8b);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.main-header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Modificar Container */
+.modificar-container {
+    background: white;
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modificar-container h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #0078d4;
+    margin-bottom: 1.5rem;
+}
+
+.success, .error {
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.success {
+    background: #e6ffe6;
+    color: #008000;
+}
+
+.error {
+    background: #ffe6e6;
+    color: #ff0000;
+}
+
+/* Formulario */
+.modificar-form label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.modificar-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.modificar-form input:focus {
+    border-color: #0078d4;
+}
+
+.modificar-form .btn {
+    background: linear-gradient(135deg, #0078d4, #00a8e8);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: block;
+    margin: 0 auto 1rem;
+    font-size: 1rem;
+}
+
+.modificar-form .btn:hover {
+    background: linear-gradient(135deg, #005bb5, #0078d4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 120, 212, 0.4);
+}
+
+/* Botones de Acción */
+.acciones {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.acciones .btn {
+    background: linear-gradient(135deg, #0078d4, #00a8e8);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.acciones .btn:hover {
+    background: linear-gradient(135deg, #005bb5, #0078d4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 120, 212, 0.4);
+}
+
+/* Footer */
+.main-footer {
+    background: linear-gradient(135deg, #0078d4, #003b8b);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 12px;
+    box-shadow: 0 -8px 15px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+}
