@@ -3,21 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>Login - Sistema de Gestión</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Inicio de Sesión</h2>
-    <form action="login.php" method="POST">
-     <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" placeholder="Nombre" id="correo" required>
+    <header class="main-header">
+        <h1>Punto Bazar</h1>
+        <h2>Sistema de Gestión</h2>
+    </header>
 
-     <label for="contrasena">Contraseña:</label>
-        <input type="password" name="contrasena" placeholder="Contraseña" id="contrasena" required>
+    <div class="container login-container">
+        <h2>Iniciar Sesión</h2>
 
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-        <a href="registro.php">¿No tienes cuenta? Crea Una</a>
+        <?php if (isset($error)): ?>
+            <p class="error"> <?= htmlspecialchars($error) ?> </p>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <label for="nombre">Nombre de Usuario:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre de usuario" required>
+
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+
+            <button type="submit" class="button">Iniciar Sesión</button>
+        </form>
+
+        <div class="acciones">
+            <a href="registro.php">¿No tienes cuenta? Regístrate</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <h3>© 2025 Sistema de Gestión. Punto Bazar.</h3>
+    </footer>
 </body>
 </html>
 
@@ -25,38 +45,41 @@
 require 'conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correo = $_POST['correo'];          // Correo proporcionado por el usuario
-    $contrasena = $_POST['contrasena'];  // Contraseña proporcionada por el usuario
+    $correo = $_POST['correo'] ?? null; // Puede ser null si no se proporciona
+    $nombre = $_POST['nombre']; // Nombre del usuario como campo obligatorio
+    $contrasena = $_POST['contrasena'];
 
-    // Verificar si el correo existe en la base de datos
-    $sql = "SELECT id, nombre, contrasena FROM usuarios WHERE correo_electronico = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("s", $correo);
+    // Verificar si el usuario ingresó un correo
+    if ($correo) {
+        // Buscar al usuario por correo
+        $sql = "SELECT id, nombre, contrasena FROM usuarios WHERE correo = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("s", $correo);
+    } else {
+        // Buscar al usuario por nombre
+        $sql = "SELECT id, nombre, contrasena FROM usuarios WHERE nombre = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("s", $nombre);
+    }
+
     $stmt->execute();
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows > 0) {
-        // Obtener datos del usuario
         $usuario = $resultado->fetch_assoc();
-        $nombre = $usuario['nombre'];  // Extraer el nombre del usuario
 
         // Verificar la contraseña
         if (password_verify($contrasena, $usuario['contrasena'])) {
-            // Inicio de sesión exitoso
             session_start();
-            $_SESSION['id'] = $usuario['id'];       // Guardar el ID del usuario en sesión
-            $_SESSION['nombre'] = $nombre;          // Guardar el nombre del usuario en sesión
-
-            // Redirigir al usuario a la página principal
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nombre'] = $usuario['nombre'];
             header("Location: dashboard.php");
             exit();
         } else {
-            // Contraseña incorrecta
-            echo "Contraseña incorrecta.";
+            $error = "Contraseña incorrecta.";
         }
     } else {
-        // Correo no registrado
-        echo "El correo electrónico no está registrado.";
+        $error = "Usuario no encontrado.";
     }
 
     $stmt->close();
